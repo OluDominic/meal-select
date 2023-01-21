@@ -1,25 +1,38 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import './index.scss'
-import Select from "react-select";
 
 
 const Form =()=> {
+    const [selected, setSelected] = useState("selectMeal");
 
-    const options = [
-        {label:'Food', value: "food"},
-    {label:'Drinks', value: "drinks"}
-    ]
+    const [food, setFood] = useState(false)
+    const [drinks, setDrinks] = useState(false)
 
-    const [selected, setSelected] = useState(null);
+    useEffect(()=> {
+        selected === "food"
+        ? setFood(true)
+        : setFood(false);
+        selected === "drinks"
+        ? setDrinks(true)
+        : setDrinks(false)
+    },[selected])
 
-  const handleChange = (selectedOption) => {
-    setSelected(selectedOption);
-    console.log(`Option selected:`, selectedOption);
-  };
+    const mealChange=(e)=> {
+        setSelected(e.target.value)
+    }
 
     return (
         <div>
-            <Select options={options} onChange={handleChange} value={selected} />
+        
+        <div>
+            <select value={selected} onChange={mealChange}>
+                <option value="selectMeal">Select options</option>
+                <option value="food">Food</option>
+                <option value="drinks">Drinks</option>
+            </select>
+        </div>
+        {food && <p style={{color: "white"}}>rice and beans </p>}
+        {drinks && <h2> Hollandia yoghurt </h2>}
         </div>
     );
 }
