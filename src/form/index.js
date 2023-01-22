@@ -22,17 +22,29 @@ const Form =()=> {
     }
 
     return (
-        <div>
-        
-        <div>
-            <select value={selected} onChange={mealChange}>
-                <option value="selectMeal">Select options</option>
-                <option value="food">Food</option>
-                <option value="drinks">Drinks</option>
-            </select>
-        </div>
-        {food && <p style={{color: "white"}}>rice and beans </p>}
-        {drinks && <h2> Hollandia yoghurt </h2>}
+        <div className="meal-select">
+            <h3>Meal Select</h3>
+            <div className="select">
+                <label>Categories</label>
+                <select value={selected} onChange={mealChange}>
+                    <option value="selectMeal">Select an option</option>
+                    <option value="food">Food</option>
+                    <option value="drinks">Drinks</option>
+                </select>
+            </div>
+
+            <div className="meal-list">
+                <p>Items</p>
+            {food && <ul>
+                <li>Eba</li>
+                <li>Mega pot lover</li>
+                <li>Beans</li>
+                </ul>}
+            {drinks && <ul>
+                <li>Hollandia yogurt</li>
+                <li>Monster energy drink</li>
+                </ul>}
+            </div>
         </div>
     );
 }
